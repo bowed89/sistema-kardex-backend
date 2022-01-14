@@ -1,0 +1,405 @@
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman';
+        text-align: justify;
+        font-weight: 400;
+        font-size: 11px;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @media print {
+        .page {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .page.first {
+        border-left: 5px solid green;
+    }
+
+    .group {
+        margin-top: 3mm;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .logo {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        top: 15%;
+    }
+
+
+
+    ul.no-bullets {
+        list-style-type: none;
+    }
+</style>
+
+<html>
+
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- PRIMERA PAGINA -->
+
+    <div class="row">
+        <div class="col-md-12 text-center mt-4">
+            <strong>
+                <p style="font-size: 12px;"> TÉRMINOS DE REFERENCIA <br>
+                    CONTRATACIÓN DE CONSULTORÍA INDIVIDUAL DE LÍNEA <br>
+                    SUPERVISOR DE CAMPO ÁREA <%= area %>
+                        <%= sede_trabajo %>
+                </p>
+            </strong>
+        </div>
+
+        <strong>1. IDENTIFICACIÓN</strong><br /><br />
+        <div class="col-md-12">
+            <table class="table table-bordered" style="border: black;">
+                <tbody>
+                    <tr>
+                        <th scope="row">DENOMINACIÓN DEL PUESTO:</th>
+                        <td>
+                            <%= cargo %> - Supervisor de Campo Área <%= area %>
+                                    <%= sede_trabajo %>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CÓDIGO ACTIVIDAD/PROYECTO-FUENTE</th>
+
+                        <td>
+                            <%= sigla %>/<%= organismo_fin %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">INSTITUCIÓN:</th>
+                        <td>Instituto Nacional de Estadística</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Vigencia/Plazo del Contrato:</th>
+                        <% if (dias==0) {%>
+                            <td>
+                                <%= diaMes %>
+                            </td>
+                            <% } else { %>
+                                <td>
+                                    <%= mesesConDias %>
+                                </td>
+                                <% } %>
+                    </tr>
+                    <tr>
+                        <th scope="row">SUELDO MENSUAL:</th>
+                        <td>
+                            Bs. <%= sueldo %> ( <%= montoNumero %> 00/100 bolivianos)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">MODALIDAD DE CONTRATACIÓN:</th>
+                        <td>
+                            <% if (modalidad_contratacion==1) {%>
+                                <p>MENOR (para montos hasta Bs 50.000.-)</p>
+                                <% } %>
+                                    <% if (modalidad_contratacion==2) {%>
+                                        <p>MAYOR (para montos hasta Bs 200.000.-)</p>
+                                        <% } %>
+                                            <% if (modalidad_contratacion==3) {%>
+                                                <p>MAYOR (para montos hasta Bs 1.000.000.-)</p>
+                                                <% } %>
+                                                    <% if (modalidad_contratacion==4) {%>
+                                                        <p>Mayor de Licitación Pública de Bs. 1.000.000 en adelante</p>
+                                                        <% } %>
+                                                            <% if (modalidad_contratacion==5) {%>
+                                                                <p>Mayor de Contratación por Excepción (sin límite de
+                                                                    monto)</p>
+                                                                <% } %>
+                                                                    <% if (modalidad_contratacion==6) {%>
+                                                                        <p>Mayor de Contratación Directa de Bienes y
+                                                                            Servicios (sin límite de monto)</p>
+                                                                        <% } %>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <strong class="mb-3">2. ANTECEDENTES DE LA CONTRATACIÓN </strong><br /><br />
+            <strong>2.1. ANTECEDENTES</strong><br /><br />
+            <%= antecedentes %> <br /><br />
+                <strong>2.2. JUSTIFICACIÓN</strong><br /><br />
+
+                La Dirección de Censos y Encuestas, requiere la contratación de un Técnico 4 - Supervisor de Campo Área
+                <%= area %>
+                    <%= sede_trabajo %>, para supervisar la recolección de datos de la Encuesta. De Hogares 2021.
+                        <br /> <br />
+                        <strong>3. OBJETIVO DE LA CONSULTORIA</strong><br /><br />
+                        <%= objetivo_consultoria %><br /><br />
+                            <strong>3.1 FUNCIONES Y/O ACTIVIDADES A SER DESARROLLADAS POR EL
+                                CONSULTOR</strong><br /><br />
+                            <!-- <ol type="a">
+                        <% justificacion.forEach((jus, index)=> {%>
+                            <li>)<%= jus %></li>
+                            <% }) %>
+                    </ol> -->
+                            <ul class="no-bullets">
+                                <li>
+                                    a) Organizar las tareas de la brigada y el trabajo de recolección de datos en el
+                                    área <%= area %> u otras que le fueran asignadas en el Departamento de <%=
+                                            sede_trabajo %>,
+                                            cumpliendo procedimientos establecidos en manuales e instructivos del INE.
+                                </li>
+                                <li>
+                                    b) Supervisar el levantamiento de listados de viviendas (LV) del área de trabajo
+                                    área <%= area %> u otras que le fueran asignadas en el Departamento de <%=
+                                            sede_trabajo %>,
+                                            cumpliendo procedimientos establecidos en manuales e instructivos del INE.
+                                </li>
+                                <li>
+                                    c) Realizar consolidación de la actualización cartográfica en el sistema central de
+                                    datos.
+                                </li>
+                                <li>
+                                    d) Consolidar los resultados del levantamiento del listado de viviendas y
+                                    transcribirlos al sistema central de datos, realizando la selección de viviendas y
+                                    asignación de carga de trabajo a los encuestadores.
+                                </li>
+                                <li>
+                                    e) Reportar mediante tablas de control diario dirigidas al Supervisor General y/o
+                                    Profesional Departamental Técnico del Departamento de Pando, los resultados del
+                                    levantamiento de listado de viviendas y recopilación de datos realizada mediante
+                                    entrevista presencial o llamadas telefónicas.
+                                </li>
+                                <li>
+                                    f) Supervisar la recolección de datos en el área <%= area %> u otras que le
+                                        fueran asignadas en el Departamento de <%= sede_trabajo %>, cumpliendo
+                                            procedimientos establecidos
+                                            en manuales e instructivos del INE, verificando la consistencia de los
+                                            datos.
+                                </li>
+                                <li>
+                                    g). Verificar la resolución de observaciones, inconsistencias u omisiones detectadas
+                                    en el sistema de monitoreo de calidad de datos en las boletas de los encuestadores
+                                    de su brigada.
+                                </li>
+                                <li>
+                                    h) Resolver dudas y consultas de los encuestadores, para el registro de datos de
+                                    casos especiales presentados durante la recolección de datos.
+                                </li>
+                                <li>
+                                    i) Si fuera necesario, reemplazará a encuestadores realizando el trabajo de
+                                    levantamiento de listados de vivienda o recolección de datos, según se requiera.
+                                </li>
+                                <li>
+                                    j) Aplicar el protocolo de recuperación de rechazos, cuando sea necesario, en
+                                    coordinación con el encuestador que recibió el rechazo.
+                                </li>
+                                <li>
+                                    k) Realizar otras actividades asignadas por su inmediato superior.
+                                </li>
+                            </ul>
+
+                            <% if (actividades !="" ) {%>
+                                <div>
+                                    Adicionalmente el Consultor deberá considerar, para todos los procesos, las
+                                    siguientes
+                                    actividades:
+                                    <br /><br />
+                                    <ol type="a">
+                                        <% actividades.forEach((act, index)=> {%>
+                                            <li>
+                                                <%= act %>
+                                            </li>
+                                            <% }) %>
+                                    </ol>
+                                </div>
+                                <% } %>
+        </div>
+
+    </div>
+    <!-- FIN DE LA PRIMERA PAGINA -->
+
+    <!-- SEGUNDA PAGINA -->
+    <div class="row">
+        <div class="ml-2" style="text-align: justify">
+            <div style="margin-top: 1%;">
+
+                <strong>3.2 PERFIL REQUERIDO PARA EL SERVICIO DE CONSULTORÍA</strong><br /> <br />
+                El perfil y los requisitos mínimos que el consultor a ser contratado deberá cumplir son los
+                siguientes:
+                <br /><br />
+            </div>
+
+            <div class="col-md-10" style="text-align: center; width: 100%;">
+                <table class="table table-bordered" style="border: black;">
+                    <tbody>
+                        <tr>
+                            <td rowspan="1"> <br> Formación <br>
+                                Requerida</td>
+                            <td>Formación
+                                Mínima <br>
+                                Obligatoria</td>
+                            <td>
+                                <%= perfil_formacion_min %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"> <br> Experiencia</td>
+                            <td>Experiencia <br> Mínina General</td>
+                            <td>
+                                <%= perfil_exp_gral %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Experiencia <br> Mínina Especifica</td>
+                            <td>
+                                <%= perfil_exp_esp %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <strong>3.3 DOCUMENTOS A PRESENTAR POR LOS POSTULANTES</strong><br /><br />
+            <ul class="no-bullets">
+                <% documentos_presentar.forEach((fun, index)=> { %>
+                    <li>
+                        <%= fun %>
+                    </li>
+                    <% }) %>
+            </ul>
+
+
+            <strong>4. CONDICIONES ADMINISTRATIVAS</strong><br /><br />
+            <strong>4.1 PLAZO Y VIGENCIA DEL CONTRATO</strong><br /><br />
+            <% if (dias==0) {%>
+                El trabajo se desarrollará por <%= meses_contrato %> meses a partir del <%= diaMes2 %> .
+                        <% } else { %>
+                            El trabajo se desarrollará por <%= meses_contrato %> meses y <%= dias %> días a partir del
+                                    <%= diaMes2 %>.
+                                        <% } %>
+                                            <br /> <br />
+                                            <strong>4.2 HONORARIOS MENSUALES</strong><br /><br />
+                                            La forma de pago será mensual de Bs.<%= sueldo %> (<%= montoNumero %> 00/100
+                                                    bolivianos).
+                                                    <strong>4.3 FORMA DE PAGO</strong><br /><br />
+                                                    El pago se realizará mediante transferencia electrónica vía SIGEP,
+                                                    previa aprobación del
+                                                    Responsable de Recepción. <br>
+                                                    El consultor deberá realizar el informe mensual en el formato del
+                                                    Form. INE/DAS/USA/06, adjuntando:<br><br>
+
+                                                    <ul>
+                                                        <li>Comprobante de pago de contribuciones al Sistema Integral de
+                                                            Pension SIP,
+                                                            realizada a la respectiva AFP, conforme a lo establecido en
+                                                            la ley Nº 065 (Ley de
+                                                            Pensiones)
+                                                        </li>
+                                                        <li>
+                                                            Declaración Trimestral al (SIN) si corresponde o solicitar
+                                                            mediante nota las
+                                                            retenciones impositivas correspondientes.
+                                                        </li>
+                                                    </ul> <br>
+
+                                                    <strong>4.4 LUGAR DE TRABAJO Y HORARIO DE
+                                                        TRABAJO</strong><br /><br />
+                                                    La consultoría se realizará para el desarrollo del trabajo de campo
+                                                    y/o gabinete en
+                                                    instalaciones del INE en el Departamento de <%= sede_trabajo %>.
+                                                        <br /><br />
+                                                        El personal desarrollará sus actividades en el marco de los
+                                                        horarios de trabajo
+                                                        establecidos
+                                                        por la institución y la asistencia se verificará mediante los
+                                                        sistemas de control
+                                                        institucional.<br /><br />
+                                                        La inasistencia y atrasos serán descontados de acuerdo a
+                                                        procedimientos establecidos por
+                                                        la
+                                                        Entidad.<br /><br />
+                                                        Cuando se requiera que el personal realice viajes para el
+                                                        cumplimiento de sus funciones
+                                                        o
+                                                        actividades, el INE cubrirá los gastos de pasajes y viáticos de
+                                                        acuerdo a normativa
+                                                        vigente.<br /><br />
+                                                        Cuando sea necesario, el consultor podrá ser citado por su
+                                                        inmediato superior, en fines
+                                                        de
+                                                        semana y/o feriados, de acuerdo al desarrollo y
+                                                        responsabilidades inherentes a su cargo.
+                                                        <br /><br />
+
+                                                        <strong>4.5 INFORMES</strong><br /><br />
+                                                        Presentar informes mensuales de acuerdo a los modelos
+                                                        establecidos; la aprobación de los
+                                                        informes está sujeta al cumplimiento del TDR y a la Evaluación
+                                                        del Inmediato Superior.
+                                                        <br /><br />
+                                                        A la conclusión de la consultoría deberá presentar un informe
+                                                        final de actividades y
+                                                        formulario de desvinculación vigente.
+                                                        <br /><br />
+
+        </div>
+
+    </div>
+
+    <!-- FIN SEGUNDA PAGINA -->
+
+    <!--  TERCERA PAGINA -->
+    <div class="ml-2" style="text-align: justify">
+        <strong>4.6 MÉTODO DE SELECCIÓN Y ADJUDICACIÓN</strong><br /><br />
+        El método de Presupuesto Fijo<br /><br />
+
+        <strong>4.7 SUPERVISIÓN Y DEPENDENCIA</strong><br /><br />
+        El/la Responsable de recepción y supervisión de la consultoría será el/la Técnico de Planta o el Personal
+        designado para supervisión de la EH 2021 en el Departamento de <%= sede_trabajo %>. <br /><br />
+            La dependencia de la consultoría estará a cargo del/la Encargado/a Departamental del INE en el Departamento
+            de
+            <%= sede_trabajo %>, con el visto bueno (V°B°) del/la Director/a de Censos y Encuestas del INE.
+                <br /><br />
+    </div>
+    <div class="mb-3" style="width: 100%; background-color: black; color: blanchedalmond;">
+        Declaramos de manera expresa que las funciones que desempeñara el Consultor Individual de Línea, guardan
+        relación con los objetivos y operaciones de la Unidad Solicitante.
+    </div>
+
+    <div class="mb-3" style="width: 100%; background-color: rgb(189, 186, 186); height: 20%;">
+        Solicitado por: (Responsable de la Solicitud) <br>
+        Firma y Aclaración de Firma:<br><br><br><br><br><br>
+    </div>
+    <div style="width: 100%; background-color: rgb(189, 186, 186); height: 20%;">
+        Aprobado por: (Dirección Solicitante) <br>
+        Firma y Aclaración de Firma:<br><br><br><br><br><br>
+    </div>
+
+    <!--  FIN DE TERCERA PAGINA -->
+
+    <div id="pageHeader"  style="margin-top: 30px;">
+        <img src="data:image/jpeg;base64, <%= data %>" class="rounded mx-auto d-block" id='base64image' width="160px">
+    </div>
+
+    <div id="pageFooter" style="text-align: center; font-size: 8px;">
+
+        Oficina Central La Paz <br>
+        · Avenida José Carrasco N° 1391- Miraflores · Telf.: Piloto (591-2) 2222333 · Fax (591-2) 2222885 <br>
+        · www.ine.gob.bo · @INEOficialBO · /ineboliviaoficial · ceninf@ine.gob.bo
+    </div>
+
+</body>
+
+</html>

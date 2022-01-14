@@ -1,0 +1,500 @@
+<style>
+    /*     html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman';
+        text-align: justify;
+        font-weight: 500;
+        font-size: 13px;
+        -webkit-print-color-adjust: exact;
+    } */
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman';
+        text-align: justify;
+        font-weight: 500;
+        font-size: 11px;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @media print {
+        .page {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .page.first {
+        border-left: 5px solid green;
+    }
+
+    .group {
+        margin-top: 3mm;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .logo {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        top: 15%;
+    }
+
+    ul.no-bullets {
+        list-style-type: none;
+    }
+
+    th {
+        font-size: 11px;
+    }
+
+    td {
+        font-size: 11px;
+    }
+</style>
+
+<html>
+
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- PRIMERA PAGINA -->
+    <div class="row">
+        <!-- Si es MONITOR NACIONAL DE COBERTURA, CODIFICADORES NACIONALES, SUPERVISOR DE CODIFICACIÓN NACIONAL 
+        NO LLEVA EL NOMBRE DEL DEPARTAMENTO EN SU TITULO
+        -->
+        <% if (objeto_contratacion=='MONITOR NACIONAL DE COBERTURA' || objeto_contratacion=='CODIFICADORES NACIONALES'
+            || objeto_contratacion=='SUPERVISOR DE CODIFICACIÓN NACIONAL' ) {%>
+            <div class="col-md-12 text-center mt-4">
+                <!--       <strong>
+                    <p style="font-size: 16px;"> TÉRMINOS DE REFERENCIA <br>
+                        CONTRATACIÓN DE CONSULTORÍA INDIVIDUAL DE LÍNEA <br>
+                        <%= objeto_contratacion %>
+                            <%= area %>
+                    </p>
+                </strong> -->
+                <strong>
+                    <p style="font-size: 12px;"> TÉRMINOS DE REFERENCIA <br>
+                        CONTRATACIÓN DE CONSULTORÍA INDIVIDUAL DE LÍNEA <br>
+                        <%= objeto_contratacion %>
+                            <%= area %>
+                    </p>
+                </strong>
+            </div>
+            <% } else { %>
+                <!-- Si existe titulo sin area pero con departamento -->
+                <% if ( (area)==null || (area).length==0 ) {%>
+                    <div class="col-md-12 text-center mt-4">
+                        <strong>
+                            <p style="font-size: 12px;"> TÉRMINOS DE REFERENCIA <br>
+                                CONTRATACIÓN DE CONSULTORÍA INDIVIDUAL DE LÍNEA <br>
+                                <%= objeto_contratacion %>
+                                    <%= sede_trabajo %>
+                            </p>
+                        </strong>
+                    </div>
+                    <% }else { %>
+                        <!-- Si existe titulo con area y con departamento -->
+                        <% if ( (area)==null || (area).length> 0) {%>
+                            <div class="col-md-12 text-center mt-4">
+                                <strong>
+                                    <p style="font-size: 12px;"> TÉRMINOS DE REFERENCIA <br>
+                                        CONTRATACIÓN DE CONSULTORÍA INDIVIDUAL DE LÍNEA <br>
+                                        <%= objeto_contratacion %>
+                                            <%= area %>
+                                                <%= sede_trabajo %>
+                                    </p>
+                                </strong>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+                                        <strong>1. IDENTIFICACIÓN</strong><br /><br />
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered" style="border: black;">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Denominación del Puesto:</th>
+                                                        <!-- Si es MONITOR NACIONAL DE COBERTURA, CODIFICADORES NACIONALES, SUPERVISOR DE CODIFICACIÓN NACIONAL 
+                                                NO LLEVA EL NOMBRE DEL DEPARTAMENTO EN SU TITULO
+                                                  -->
+                                                        <% if (objeto_contratacion=='MONITOR NACIONAL DE COBERTURA' ||
+                                                            objeto_contratacion=='CODIFICADORES NACIONALES' ||
+                                                            objeto_contratacion=='SUPERVISOR DE CODIFICACIÓN NACIONAL' )
+                                                            {%>
+                                                            <td>
+                                                                <%= cargo %> - <%= objeto_contratacion %>
+                                                                        <%= area %>
+                                                            </td>
+                                                            <% } else { %>
+                                                                <!-- Si existe titulo sin area pero con departamento -->
+                                                                <% if ((area)==null ||(area).length==0) {%>
+                                                                    <td>
+                                                                        <%= cargo %> - <%= objeto_contratacion %>
+                                                                                <%= sede_trabajo %>
+                                                                    </td>
+                                                                    <% } else {%>
+                                                                        <!-- Si existe titulo con area y con departamento -->
+                                                                        <% if ((area).length> 0) {%>
+                                                                            <td>
+                                                                                <%= cargo %> - <%= objeto_contratacion
+                                                                                        %>
+                                                                                        <%= area %>
+                                                                                            <%= sede_trabajo %>
+                                                                            </td>
+                                                                            <% } %>
+                                                                                <% } %>
+                                                                                    <% } %>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Código Actividad/ Proyecto- Fuente</th>
+                                                        <td>
+                                                            <%= sigla %>/<%= organismo_fin %>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Institución:</th>
+                                                        <td>Instituto Nacional de Estadística</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Vigencia/Plazo del Contrato:</th>
+                                                        <% if (dias==0) {%>
+                                                            <td>
+                                                                <%= diaMes %>
+                                                            </td>
+                                                            <% } else { %>
+                                                                <td>
+                                                                    <%= mesesConDias %>
+                                                                </td>
+                                                                <% } %>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Sueldo Mensual:</th>
+                                                        <td>
+                                                            Bs. <%= sueldo %> ( <%= montoNumero %> 00/100 bolivianos)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Modalidad de Contratación:</th>
+                                                        <td>
+                                                            <% if (modalidad_contratacion==1) {%>
+                                                                <p>Menor (para montos hasta Bs 50.000.-)</p>
+                                                                <% } %>
+                                                                    <% if (modalidad_contratacion==2) {%>
+                                                                        <p>Mayor (para montos hasta Bs 200.000.-)</p>
+                                                                        <% } %>
+                                                                            <% if (modalidad_contratacion==3) {%>
+                                                                                <p>Mayor (para montos hasta Bs
+                                                                                    1.000.000.-)
+                                                                                </p>
+                                                                                <% } %>
+                                                                                    <% if (modalidad_contratacion==4)
+                                                                                        {%>
+                                                                                        <p>Mayor de Licitación Pública
+                                                                                            de
+                                                                                            Bs.
+                                                                                            1.000.000
+                                                                                            en adelante</p>
+                                                                                        <% } %>
+                                                                                            <% if
+                                                                                                (modalidad_contratacion==5)
+                                                                                                {%>
+                                                                                                <p>Mayor de Contratación
+                                                                                                    por
+                                                                                                    Excepción
+                                                                                                    (sin límite de
+                                                                                                    monto)</p>
+                                                                                                <% } %>
+                                                                                                    <% if
+                                                                                                        (modalidad_contratacion==6)
+                                                                                                        {%>
+                                                                                                        <p>Mayor de
+                                                                                                            Contratación
+                                                                                                            Directa
+                                                                                                            de Bienes y
+                                                                                                            Servicios
+                                                                                                            (sin
+                                                                                                            límite de
+                                                                                                            monto)</p>
+                                                                                                        <% } %>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <strong class="mb-3">2. ANTECEDENTES DE LA CONTRATACIÓN
+                                            </strong><br /><br />
+                                            <strong>2.1. ANTECEDENTES</strong><br /><br />
+                                            <%= antecedentes %> <br /><br />
+                                                <strong>2.2. JUSTIFICACIÓN</strong><br /><br />
+
+                                                <ul class="no-bullets">
+                                                    <% justificacion.forEach((fun, index)=> {%>
+                                                        <li>
+                                                            <%= fun %>
+                                                        </li>
+                                                        <% }) %>
+                                                </ul>
+                                                <br />
+                                                <strong>3. OBJETIVO DE LA CONSULTORIA</strong><br /><br />
+                                                <%= objetivo_consultoria %><br /><br />
+                                                    <strong>3.1 FUNCIONES Y/O ACTIVIDADES A SER DESARROLLADAS POR EL
+                                                        CONSULTOR</strong><br /><br />
+                                                    Las funciones y actividades a ser desarrolladas por el consultor
+                                                    individual
+                                                    de
+                                                    línea, son las
+                                                    siguientes:
+                                                    <br /><br />
+                                                    <ul class="no-bullets">
+                                                        <% funciones.forEach((fun, index)=> {%>
+                                                            <li>
+                                                                <%= fun %>
+                                                            </li>
+                                                            <% }) %>
+                                                    </ul>
+                                                    <% if (actividades !="" ) {%>
+                                                        <div>
+                                                            Adicionalmente el Consultor deberá considerar, para todos
+                                                            los
+                                                            procesos, las
+                                                            siguientes
+                                                            actividades:
+                                                            <br /><br />
+                                                            <ol type="a">
+                                                                <% actividades.forEach((act, index)=> {%>
+                                                                    <li>
+                                                                        <%= act %>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ol>
+                                                        </div>
+                                                        <% } %>
+                                        </div>
+
+    </div>
+    <!-- FIN DE LA PRIMERA PAGINA -->
+
+    <!-- SEGUNDA PAGINA -->
+    <div class="row">
+        <div class="ml-2" style="text-align: justify">
+            <div style="margin-top: 1%;">
+
+                <strong>3.2 PERFIL REQUERIDO PARA EL SERVICIO DE CONSULTORÍA</strong><br /> <br />
+                El perfil y los requisitos mínimos que el consultor a ser contratado deberá cumplir son los
+                siguientes:
+                <br /><br />
+            </div>
+
+            <!-- CON CURSOS REQUERIDOS -->
+            <% if ((perfil_cursos_req).length> 0) {%>
+                <div class="col-md-10" style="text-align: center; width: 100%;">
+                    <table class="table table-bordered" style="border: black;">
+                        <tbody>
+                            <tr>
+                                <td rowspan="2"> <br> Formación <br>
+                                    Requerida</td>
+                                <td>Formación
+                                    Mínima <br>
+                                    Obligatoria</td>
+                                <td>
+                                    <%= perfil_formacion_min %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cursos
+                                    Requeridos</td>
+                                <td>
+                                    <%= perfil_cursos_req %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"> <br> Experiencia</td>
+                                <td>Experiencia <br> Mínina General</td>
+                                <td>
+                                    <%= perfil_exp_gral %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Experiencia <br> Mínina Especifica</td>
+                                <td>
+                                    <%= perfil_exp_esp %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
+
+                    <!-- SIN CURSOS REQUERIDOS -->
+                    <% if ( (perfil_cursos_req).length==0) {%>
+                        <div class="col-md-10" style="text-align: center; width: 100%;">
+                            <table class="table table-bordered" style="border: black;">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="1"> <br> Formación <br>
+                                            Requerida</td>
+                                        <td>Formación
+                                            Mínima <br>
+                                            Obligatoria</td>
+                                        <td>
+                                            <%= perfil_formacion_min %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"> <br> Experiencia</td>
+                                        <td>Experiencia <br> Mínina General</td>
+                                        <td>
+                                            <%= perfil_exp_gral %>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Experiencia <br> Mínina Especifica</td>
+                                        <td>
+                                            <%= perfil_exp_esp %>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <% } %>
+
+
+
+                            <strong>3.3 DOCUMENTOS A PRESENTAR POR LOS POSTULANTES</strong><br /><br />
+                            <ul class="no-bullets">
+                                <% documentos_presentar.forEach((fun, index)=> { %>
+                                    <li>
+                                        <%= fun %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+
+                            <strong>4. CONDICIONES ADMINISTRATIVAS</strong><br /><br />
+                            <strong>4.1 PLAZO Y VIGENCIA DEL CONTRATO</strong><br /><br />
+
+                            <% if (dias==0) {%>
+                                El trabajo se desarrollará por <%= meses_contrato %> meses a partir del <%= diaMes2 %> .
+                                        <% } else { %>
+                                            El trabajo se desarrollará por <%= meses_contrato %> meses y <%= dias %>
+                                                    días a partir del <%= diaMes2 %>.
+                                                        <% } %>
+
+                                                            <br />
+                                                            <br />
+                                                            <strong>4.2 HONORARIOS MENSUALES</strong><br /><br />
+                                                            <%= honorarios_me %> <br /><br />
+                                                                <strong>4.3 FORMA DE PAGO</strong><br /><br />
+                                                                El pago se realizará mediante transferencia electrónica
+                                                                vía SIGEP, previa
+                                                                aprobación
+                                                                del
+                                                                Responsable de Recepción. <br>
+                                                                El consultor deberá adjuntar al formato del
+                                                                Form.lNE/DAS/USN06:<br><br>
+
+                                                                <ul>
+                                                                    <li>Comprobante de pago de contribuciones al Sistema
+                                                                        Integral de Pension
+                                                                        SIP,
+                                                                        realizada a la respectiva AFP, conforme a lo
+                                                                        establecido en la ley
+                                                                        Nº 065
+                                                                        (Ley de
+                                                                        Pensiones).
+                                                                    </li>
+                                                                    <li>
+                                                                        Declaración Trimestral al (SIN) si corresponde o
+                                                                        solicitar mediante
+                                                                        nota las
+                                                                        retenciones impositivas correspondientes.
+                                                                    </li>
+                                                                </ul> <br>
+
+                                                                <strong>4.4 LUGAR DE TRABAJO Y HORARIO DE
+                                                                    TRABAJO</strong><br /><br />
+                                                                <%= lugar_horario %>
+                                                                    <br /><br />
+
+                                                                    <strong>4.5 INFORMES</strong><br /><br />
+                                                                    El personal contratado deberá presentar informes
+                                                                    mensuales de acuerdo a
+                                                                    los
+                                                                    modelos
+                                                                    establecidos; la aprobación de los informes está
+                                                                    sujeta al cumplimiento
+                                                                    del
+                                                                    TDR y a
+                                                                    la
+                                                                    Evaluación del Supervisor.<br />
+                                                                    A la conclusión de la consultoría deberá presentar
+                                                                    un informe final de
+                                                                    actividades y
+                                                                    formulario de desvinculación vigente.<br /><br />
+
+        </div>
+
+    </div>
+
+    <!-- FIN SEGUNDA PAGINA -->
+
+    <!--  TERCERA PAGINA -->
+    <div class="ml-2" style="text-align: justify">
+        <strong>4.6 MÉTODO DE SELECCIÓN Y ADJUDICACIÓN</strong><br /><br />
+        El método de Presupuesto Fijo<br /><br />
+
+        <strong>4.7 SUPERVISIÓN Y DEPENDENCIA</strong><br /><br />
+        <%= supervision_dep %><br /><br />
+    </div>
+    <div class="mb-3" style="width: 100%; background-color: black; color: blanchedalmond;">
+        Declaramos de manera expresa que las funciones que desempeñara el Consultor Individual de Línea, guardan
+        relación con los objetivos y operaciones de la Unidad Solicitante.
+    </div>
+
+    <div class="mb-3" style="width: 100%; background-color: rgb(189, 186, 186); height: 20%;">
+        Solicitado por: (Responsable de la Solicitud) <br>
+        Firma y Aclaración de Firma:<br><br><br><br><br><br>
+    </div>
+    <div style="width: 100%; background-color: rgb(189, 186, 186); height: 20%;">
+        Aprobado por: (Dirección Solicitante) <br>
+        Firma y Aclaración de Firma:<br><br><br><br><br><br>
+    </div>
+
+    <!--  FIN DE TERCERA PAGINA -->
+
+    <!--  <div id="pageHeader">
+        <img src="data:image/jpeg;base64, <%= data %>" class="rounded mx-auto d-block" id='base64image' width="190px">
+    </div> -->
+    <div id="pageHeader" style="margin-top: 30px;">
+        <img src="data:image/jpeg;base64, <%= data %>" class="rounded mx-auto d-block" id='base64image' width="160px">
+    </div>
+
+    <!--     <div id="pageFooter" style="text-align: center; font-size: 10px;">
+
+        Oficina Central La Paz <br>
+        · Avenida José Carrasco N° 1391- Miraflores · Telf.: Piloto (591-2) 2222333 · Fax (591-2) 2222885 <br>
+        · www.ine.gob.bo · @INEOficialBO · /ineboliviaoficial · ceninf@ine.gob.bo
+    </div> -->
+    <div id="pageFooter" style="text-align: center; font-size: 8px;">
+
+        Oficina Central La Paz <br>
+        · Avenida José Carrasco N° 1391- Miraflores · Telf.: Piloto (591-2) 2222333 · Fax (591-2) 2222885 <br>
+        · www.ine.gob.bo · @INEOficialBO · /ineboliviaoficial · ceninf@ine.gob.bo
+    </div>
+
+</body>
+
+</html>
