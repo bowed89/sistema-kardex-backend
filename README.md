@@ -1,0 +1,2 @@
+iniciar con 
+npm install
